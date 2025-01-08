@@ -1,0 +1,162 @@
+
+
+/* Header styles */
+.header-student {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #003366;
+    padding: 10px 20px;
+    color: white;
+}
+
+.menu-btn{
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.student-title {
+    color: white;
+    margin-left: 10px;
+    font-size: 1.5rem;
+}
+
+.notifications {
+    position: relative;
+    cursor: pointer;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 8px;
+    font-size: 12px;
+}
+
+.notification-dropdown {
+    position: absolute;
+    right: 0;
+    top: 30px;
+    background-color: white;
+    border: 1px solid #ccc;
+    width: 200px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.notification-item {
+    padding: 10px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.notification-item:hover {
+    background-color: #f1f1f1;
+}
+
+/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    background-color: #003366;
+    color: white;
+    display: none;
+    flex-direction: column;
+    padding-top: 50px;
+}
+
+.sidebar.active {
+    display: flex;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #003366;
+    transition: background-color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #444;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.main-content h2 {
+    margin-bottom: 20px;
+}
+
+/* Table styles */
+.exam-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.exam-table th,
+.exam-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.exam-table th {
+    background-color: #003366;
+    color: white;
+}
+
+.status-allowed {
+    color: green;
+    font-weight: bold;
+}
+
+.status-denied {
+    color: red;
+    font-weight: bold;
+}
+
+.start-exam-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.start-exam-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Profil Étudiant */
+.profile-info {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.profile-info p { 
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.profile-info strong {
+    color: #003366;
+}

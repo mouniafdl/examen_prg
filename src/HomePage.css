@@ -1,0 +1,101 @@
+/* Style général */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* En-tête */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #003366;
+    padding: 10px 40px;
+    color: white;
+}
+
+.header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 15px;
+}
+
+.header nav ul li button {
+    background-color: #ffffff;
+    color: #003366;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.header nav ul li button:hover {
+    background-color: #003366;
+    color: white;
+}
+
+/* Page d'accueil */
+.home-page {
+    text-align: center;
+    padding: 20px;
+}
+
+.home-page h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.home-page p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.image-container {
+    margin: 20px auto;
+}
+
+.home-page-image {
+    max-width: 80%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Pied de page */
+.footer {
+    background-color: #003366;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-logo-image {
+    width: 50px;
+    margin: 10px 0;
+}
+
+.footer-links a,
+.footer-link a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-links a:hover,
+.footer-link a:hover {
+    text-decoration: underline;
+}
