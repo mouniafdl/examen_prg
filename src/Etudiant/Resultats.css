@@ -1,0 +1,98 @@
+/* Conteneur principal de la section des résultats */
+#results {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre principal */
+#results h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Vue d'ensemble des résultats */
+.results-overview {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+/* Bloc moyenne générale */
+.average-score {
+    flex: 1;
+    text-align: center;
+    background-color: #eaf7ea;
+    border: 2px solid #4caf50;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.average-score h3 {
+    font-size: 1.5rem;
+    color: #4caf50;
+    font-weight: bold;
+}
+
+/* Graphique */
+.results-chart {
+    flex: 2;
+    margin: 10px;
+}
+
+.results-chart canvas {
+    width: 100%;
+    height: auto;
+}
+
+/* Table des résultats */
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 1rem;
+    background-color: white;
+}
+
+.results-table th,
+.results-table td {
+    text-align: center;
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+.results-table th {
+    background-color: #4caf50;
+    color: white;
+}
+
+.results-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.results-table tr:hover {
+    background-color: #eaf7ea;
+}
+
+.results-table td {
+    color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .results-overview {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .average-score,
+    .results-chart {
+        margin: 10px 0;
+    }
+}

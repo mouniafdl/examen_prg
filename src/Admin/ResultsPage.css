@@ -1,0 +1,270 @@
+/* Conteneur principal */
+.resultsPageContainer {
+    padding: 20px;
+    background-color: #f4f7f6;
+    min-height: 100vh;
+}
+
+.resultsPageContainer h3 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Filtres */
+.resultsPageFilters {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.resultsPageFilters label {
+    font-size: 1rem;
+    color: #34495e;
+    font-weight: 500;
+}
+
+.resultsPageFilters select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #bdc3c7;
+    background-color: #ecf0f1;
+    font-size: 1rem;
+    color: #2c3e50;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.resultsPageFilters select:hover {
+    border-color: #3498db;
+    background-color: #ffffff;
+}
+
+/* Tableau des résultats */
+.resultsPageTable {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+.resultsPageTable table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.resultsPageTable th,
+.resultsPageTable td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.resultsPageTable th {
+    background-color: #3498db;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.resultsPageTable tr:hover {
+    background-color: #f1f1f1;
+}
+
+.resultsPageTable button {
+    padding: 8px 12px;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.resultsPageTable button:hover {
+    background-color: #2980b9;
+}
+
+/* Détails de l'étudiant */
+.resultsPageStudentDetails {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.resultsPageStudentDetails h4 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.resultsPageStudentDetails .studentInfo p {
+    font-size: 1rem;
+    color: #34495e;
+    margin-bottom: 10px;
+}
+
+.resultsPageStudentDetails .actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.resultsPageStudentDetails .actions button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.resultsPageStudentDetails .backButton {
+    background-color: #95a5a6;
+    color: #ffffff;
+}
+
+.resultsPageStudentDetails .backButton:hover {
+    background-color: #7f8c8d;
+}
+
+.resultsPageStudentDetails .saveButton {
+    background-color: #27ae60;
+    color: #ffffff;
+}
+
+.resultsPageStudentDetails .saveButton:hover {
+    background-color: #219653;
+}
+
+.resultsPageStudentDetails .editButton {
+    background-color: #f39c12;
+    color: #ffffff;
+}
+
+.resultsPageStudentDetails .editButton:hover {
+    background-color: #e67e22;
+}
+
+/* Tableau des modules */
+.resultsPageStudentDetails .modulesTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.resultsPageStudentDetails .modulesTable th,
+.resultsPageStudentDetails .modulesTable td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.resultsPageStudentDetails .modulesTable th {
+    background-color: #3498db;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.resultsPageStudentDetails .modulesTable tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Note totale */
+.resultsPageStudentDetails .totalGrade {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Tableau des absences */
+.resultsPageStudentDetails .absencesTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.resultsPageStudentDetails .absencesTable th,
+.resultsPageStudentDetails .absencesTable td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.resultsPageStudentDetails .absencesTable th {
+    background-color: #3498db;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.resultsPageStudentDetails .absencesTable tr:hover {
+    background-color: #f1f1f1;
+}
+
+.resultsPageStudentDetails .proofButton {
+    background: none;
+    border: none;
+    color: #3498db;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+    font-size: inherit;
+    transition: color 0.3s ease;
+}
+
+.resultsPageStudentDetails .proofButton:hover {
+    color: #2980b9;
+}
+
+/* Modal pour la preuve */
+.resultsPageStudentDetails .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.resultsPageStudentDetails .modalContent {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.resultsPageStudentDetails .closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #2c3e50;
+    transition: color 0.3s ease;
+}
+
+.resultsPageStudentDetails .closeButton:hover {
+    color: #e74c3c;
+}

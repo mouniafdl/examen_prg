@@ -1,233 +1,343 @@
-/* Container for the whole page */
+/* Conteneur principal */
 .formateur-page {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* Header styles */
+/* En-tête */
 .header-formateur {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #003366;
-    padding: 10px 20px;
-    color: white;
+    padding: 1rem 2rem;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-.top-left {
+.header-formateur .top-left {
     display: flex;
     align-items: center;
+    gap: 1rem;
 }
 
-.menu-btn {
+.header-formateur .menu-btn {
     background: none;
     border: none;
-    color: white;
     font-size: 1.5rem;
     cursor: pointer;
+    color: #333;
 }
 
-.formateur-title {
-    color: white;
-    margin-left: 10px;
+.header-formateur .formateur-title {
     font-size: 1.5rem;
+    font-weight: 600;
+    color: #2c3e50;
 }
 
-.top-right {
+.header-formateur .top-right {
     display: flex;
     align-items: center;
+    gap: 1.5rem;
 }
 
-.notifications {
+.header-formateur .notifications {
     position: relative;
-    margin-right: 20px;
     cursor: pointer;
 }
 
-.notification-badge {
+.header-formateur .notification-badge {
     position: absolute;
     top: -5px;
     right: -5px;
-    background-color: red;
+    background-color: #e74c3c;
     color: white;
     border-radius: 50%;
-    padding: 3px 8px;
-    font-size: 12px;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
 }
 
-.notification-dropdown {
+.header-formateur .notification-dropdown {
     position: absolute;
+    top: 40px;
     right: 0;
-    top: 30px;
-    color: black;
     background-color: white;
-    border: 1px solid #ccc;
-    width: 200px;
-    max-height: 200px;
-    overflow-y: auto;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 10;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    padding: 1rem;
+    z-index: 1000;
 }
 
-.notification-item {
-    padding: 10px;
-    border-bottom: 1px solid #f1f1f1;
-    cursor: pointer;
+.header-formateur .notification-item {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9rem;
 }
 
-.notification-item:hover {
-    background-color: #f1f1f1;
+.header-formateur .notification-item:last-child {
+    border-bottom: none;
 }
 
-.profile-section {
+.header-formateur .profile-section {
     display: flex;
     align-items: center;
+    gap: 0.5rem;
     cursor: pointer;
 }
 
-.profile-img {
-    width: 30px;
-    height: 30px;
+.header-formateur .profile-img {
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    margin-right: 10px;
+    object-fit: cover;
 }
 
-.profile-section span {
-    font-size: 1rem;
-    color: white;
-}
-
-/* Sidebar styles */
+/* Sidebar */
 .sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #003366;
+    color: white;
     position: fixed;
-    top: 70px;
+    top: 0;
     left: -250px;
-    width: 200px;
-    height: 100%;
-    background: #003366;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    gap: 20px;
-    transition: all 0.3s ease;
+    transition: left 0.3s ease;
+    padding-top: 6rem;
+    /* Espace pour le header */
+    z-index: 999;
 }
 
 .sidebar.active {
-    display: flex;
+    left: 0;
 }
 
-.sidebar a {
-    color: white;
-    text-decoration: none;
-    padding: 15px 25px;
-    font-size: 1.2rem;
-    border-bottom: 1px solid #003366;
-    transition: background-color 0.3s;
+/* Ajoutez une classe pour le premier bouton */
+.sidebar button:first-of-type {
+    margin-top: 2rem;
+    /* Espace entre le header et le premier bouton */
 }
 
-.sidebar a:hover {
-    background-color: #444;
-}
-
-/* Main content area */
-.main-content {
-    margin-left: 250px;
-    padding: 20px;
-    flex-grow: 1;
-}
-
-.main-content h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-/* Profile Settings */
-.profile-settings {
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    padding: 20px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.profile-photo-section {
+.sidebar button {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    width: 100%;
+    padding: 1rem;
+    background: none;
+    border: none;
+    color: white;
+    text-align: left;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.profile-photo {
-    width: 150px;
-    height: 150px;
+.sidebar button:hover {
+    background-color: #A0C0E0;
+    color: #003366;
+}
+
+.sidebar-icon {
+    font-size: 1.2rem;
+    margin-right: 0.75rem;
+    vertical-align: middle;
+}
+
+/* Contenu principal */
+.main-content {
+    flex: 1;
+    margin-left: 0;
+    padding: 2rem;
+    transition: margin-left 0.3s ease;
+}
+
+.sidebar.active+.main-content {
+    margin-left: 250px;
+}
+
+/* Tableau de bord */
+.dashboard-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.dashboard-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.dashboard-content .welcome-message {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+/* Accès Rapide */
+.quick-links {
+    margin-bottom: 2rem;
+}
+
+.quick-links h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.quick-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.quick-link-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.quick-link-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.quick-link-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #3498db;
+}
+
+.quick-link-card span {
+    font-size: 1.1rem;
+    color: #333;
+}
+
+/* Boîte d'information */
+.info-box {
+    background-color: #e8f4f8;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+    margin-bottom: 2rem;
+}
+
+.info-box p {
+    font-size: 0.95rem;
+    color: #2c3e50;
+}
+
+/* Popup de profil */
+.profile-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+
+.profile-content {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.profile-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+}
+
+.profile-img-large {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    margin-right: 20px;
+    margin-bottom: 1rem;
 }
 
 .upload-btn {
-    background-color: #003366;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 5px;
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #3498db;
     cursor: pointer;
-    margin-left: 10px;
     font-size: 0.9rem;
 }
 
 .upload-btn:hover {
-    background-color: #003366;
+    text-decoration: underline;
 }
 
-.profile-form label {
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
     display: block;
-    margin-bottom: 10px;
-    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #2c3e50;
 }
 
-.profile-form input {
+.form-group input {
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.save-btn {
-    background-color: #28a745;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
     font-size: 1rem;
 }
 
-.save-btn:hover {
-    background-color: #218838;
+.save-btn,
+.edit-btn,
+.close-btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-/* Media queries for responsiveness */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 100%;
-        display: none;
-    }
+.save-btn {
+    background-color: #3498db;
+    color: white;
+}
 
-    .sidebar.active {
-        display: block;
-    }
+.save-btn:hover {
+    background-color: #2980b9;
+}
 
-    .main-content {
-        margin-left: 0;
-    }
+.edit-btn {
+    background-color: #2ecc71;
+    color: white;
+}
 
-    .top-left {
-        flex-direction: column;
-        text-align: center;
-    }
+.edit-btn:hover {
+    background-color: #27ae60;
+}
 
-    .top-right {
-        display: none;
-    }
+.close-btn {
+    background-color: #e74c3c;
+    color: white;
+    margin-top: 1rem;
+}
+
+.close-btn:hover {
+    background-color: #c0392b;
 }

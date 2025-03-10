@@ -1,0 +1,94 @@
+.user-management-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.user-management-page h3 {
+    color: #333;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.user-management-page form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.user-management-page label {
+    font-weight: bold;
+    color: #555;
+}
+
+.user-management-page input,
+.user-management-page select,
+.user-management-page button {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.user-management-page input:focus,
+.user-management-page select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+.user-management-page button {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.user-management-page button:hover {
+    background-color: #0056b3;
+}
+
+.user-management-page select {
+    background-color: #fff;
+}
+
+.user-management-page form button[type="button"] {
+    align-self: flex-start;
+    margin-top: 5px;
+}
+
+.user-management-page .success-message {
+    color: #28a745;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.user-management-page .error-message {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+    .user-management-page {
+        padding: 10px;
+    }
+
+    .user-management-page form {
+        gap: 5px;
+    }
+
+    .user-management-page input,
+    .user-management-page select,
+    .user-management-page button {
+        font-size: 12px;
+    }
+}

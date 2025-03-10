@@ -1,55 +1,66 @@
-import React, { useState } from "react";
-import { FaBell, FaBars, FaTimes } from "react-icons/fa";
+
+import React, { useState, useContext, useEffect, useRef } from "react";
+import { FaBell, FaBars, FaTimes, FaUserEdit, FaSave, FaFileAlt, FaCheckCircle, FaChartLine, FaUserCircle, FaCheckSquare, FaRegSquare } from "react-icons/fa";
+import CreateExamPage from "./CreateExamPage";
+import CorrectExam from "./CorrectExam";
+import CreateReportPage from "./CreateReportPage";
+import { ReportContext } from "../context/ReportContext";
 import "./FormateurPage.css";
+
+
 
 const FormateurPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [notifications, setNotifications] = useState([
-    "Nouvelle notification 1",
-    "Nouvelle notification 2",
-  ]);
+  const [activeSection, setActiveSection] = useState("dashboard");
+  const [showProfile, setShowProfile] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const [profile, setProfile] = useState({
     name: "Formateur",
     email: "formateur@example.com",
-    photo: null,
+    photo: "https://via.placeholder.com/150",
   });
-  const [isProfileVisible, setIsProfileVisible] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedProfile, setEditedProfile] = useState(profile);
 
-  // Toggle the sidebar
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+  const { notifications: reportNotifications } = useContext(ReportContext);
+  const sidebarRef = useRef(null);
+
+  // Fermer la sidebar en cliquant en dehors
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  const handleEditProfile = () => setIsEditing(true);
+  const handleSaveProfile = () => {
+    setProfile(editedProfile);
+    setIsEditing(false);
   };
+  const toggleProfile = () => setShowProfile(!showProfile);
 
-  // Handle photo change
-  const handlePhotoChange = (e) => {
+  const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = () => {
-        setProfile({ ...profile, photo: reader.result });
+      reader.onloadend = () => {
+        setEditedProfile({ ...editedProfile, photo: reader.result });
       };
       reader.readAsDataURL(file);
     }
   };
 
-  // Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setProfile({ ...profile, [name]: value });
-  };
-
-  const handleSaveChanges = () => {
-    alert("Informations mises à jour avec succès !");
-  };
-
-  const handleProfileClick = () => {
-    setIsProfileVisible(!isProfileVisible);
-  };
-
-  const handleNotificationClick = () => {
-    setNotifications([]); // Clear notifications on click
-    setShowNotifications(false);
+    setEditedProfile({ ...editedProfile, [name]: value });
   };
 
   return (
@@ -68,88 +79,166 @@ const FormateurPage = () => {
             onClick={() => setShowNotifications(!showNotifications)}
           >
             <FaBell size={24} />
-            {notifications.length > 0 && (
-              <span className="notification-badge">{notifications.length}</span>
+            {reportNotifications.length > 0 && (
+              <span className="notification-badge">
+                {reportNotifications.length}
+              </span>
             )}
           </div>
           {showNotifications && (
             <div className="notification-dropdown">
-              {notifications.map((notif, index) => (
-                <div key={index} className="notification-item" onClick={handleNotificationClick}>
-                  {notif}
-                </div>
-              ))}
+              {reportNotifications.length > 0 ? (
+                reportNotifications.map((notif, index) => (
+                  <div
+                    key={index}
+                    className="notification-item"
+                  >
+                    📄 {notif.message}
+                  </div>
+                ))
+              ) : (
+                <div className="notification-item">Aucune nouvelle notification</div>
+              )}
             </div>
           )}
-          <div className="profile-section" onClick={handleProfileClick}>
-            <img
-              src={profile.photo || "https://via.placeholder.com/30"}
-              alt="Profil"
-              className="profile-img"
-            />
+          <div className="profile-section" onClick={toggleProfile}>
+            <FaUserCircle className="profile-icon" />
             <span>{profile.name}</span>
           </div>
         </div>
       </header>
 
       {/* Sidebar */}
-      <div className={`sidebar ${isSidebarOpen ? "active" : ""}`}>
-      <a href="#create-exam">Créer un examen</a>
-      <a href="#correct-exam">Corriger un examen</a>
-      <a href="#create-reports">Créer des rapports</a>
-    </div>
-
-      {/* Main Content */ }
-  <main className="main-content">
-    <h2>Tableau de bord</h2>
-
-    {isProfileVisible && (
-      <div className="profile-settings">
-        <h3>Modifier vos informations</h3>
-        <div className="profile-photo-section">
-          <img
-            src={profile.photo || "https://via.placeholder.com/150"}
-            alt="Profil"
-            className="profile-photo"
-          />
-          <input
-            type="file"
-            id="photoUpload"
-            accept="image/*"
-            onChange={handlePhotoChange}
-            style={{ display: "none" }}
-          />
-          <label htmlFor="photoUpload" className="upload-btn">
-            Modifier la photo
-          </label>
-        </div>
-        <div className="profile-form">
-          <label>
-            Nom :
-            <input
-              type="text"
-              name="name"
-              value={profile.name}
-              onChange={handleInputChange}
-            />
-          </label>
-          <label>
-            Email :
-            <input
-              type="email"
-              name="email"
-              value={profile.email}
-              onChange={handleInputChange}
-            />
-          </label>
-          <button className="save-btn" onClick={handleSaveChanges}>
-            Enregistrer les modifications
-          </button>
-        </div>
+      <div ref={sidebarRef} className={`sidebar ${isSidebarOpen ? "active" : ""}`}>
+        <button onClick={() => { setActiveSection("dashboard"); setIsSidebarOpen(false); }}>
+          <FaChartLine className="sidebar-icon" /> Tableau de Bord
+        </button>
+        <button onClick={() => { setActiveSection("create-exam"); setIsSidebarOpen(false); }}>
+          <FaFileAlt className="sidebar-icon" /> Créer un examen
+        </button>
+        {/* <button onClick={() => { setActiveSection("correct-exam"); setIsSidebarOpen(false); }}>
+          <FaCheckCircle className="sidebar-icon" /> Corriger un examen
+        </button> */}
+        <button onClick={() => { setActiveSection("create-report"); setIsSidebarOpen(false); }}>
+          <FaChartLine className="sidebar-icon" /> Créer un rapport
+        </button>
       </div>
-    )}
-  </main>
-    </div >
+
+      {/* Main Content */}
+      <main className="main-content">
+        {activeSection === "dashboard" && (
+          <div className="dashboard-content">
+            <h2>Bienvenue, {profile.name}</h2>
+            <p className="welcome-message">
+              Gérer vos examens, corriger les copies et générer des rapports en toute simplicité.
+            </p>
+
+            {/* Accès Rapide */}
+            <div className="quick-links">
+              <h3>Accès Rapide</h3>
+              <div className="quick-links-grid">
+                <button
+                  className="quick-link-card"
+                  onClick={() => setActiveSection("create-exam")}
+                >
+                  <FaFileAlt className="quick-link-icon" />
+                  <span>Créer un Examen</span>
+                </button>
+                <button
+                  className="quick-link-card"
+                  onClick={() => setActiveSection("correct-exam")}
+                >
+                  <FaCheckCircle className="quick-link-icon" />
+                  <span>Corriger un Examen</span>
+                </button>
+                <button
+                  className="quick-link-card"
+                  onClick={() => setActiveSection("create-report")}
+                >
+                  <FaChartLine className="quick-link-icon" />
+                  <span>Générer un Rapport</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Message d'encouragement ou info utile */}
+            <div className="info-box">
+              <p>
+                💡 Astuce : Utilisez l'accès rapide pour gagner du temps dans vos tâches quotidiennes.
+              </p>
+            </div>
+          </div>
+        )}
+        {activeSection === "create-exam" && <CreateExamPage />}
+        {activeSection === "correct-exam" && <CorrectExam/>}
+        {activeSection === "create-report" && <CreateReportPage />}
+      </main>
+
+      {/* Profile Popup */}
+      {showProfile && (
+        <div className="profile-popup">
+          <div className="profile-content">
+            <h2>Profil du Formateur</h2>
+            {isEditing ? (
+              <div className="edit-profile">
+                <div className="profile-photo-edit">
+                  <img
+                    src={editedProfile.photo}
+                    alt="Profil"
+                    className="profile-img-large"
+                  />
+                  <label htmlFor="profile-photo" className="upload-btn">
+                    Changer la photo
+                  </label>
+                  <input
+                    id="profile-photo"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    style={{ display: "none" }}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Nom:</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={editedProfile.name}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Email:</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={editedProfile.email}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <button className="save-btn" onClick={handleSaveProfile}>
+                  <FaSave /> Sauvegarder
+                </button>
+              </div>
+            ) : (
+              <div className="profile-details">
+                <img
+                  src={profile.photo}
+                  alt="Profil"
+                  className="profile-img-large"
+                />
+                <p><strong>Nom:</strong> {profile.name}</p>
+                <p><strong>Email:</strong> {profile.email}</p>
+                <button className="edit-btn" onClick={handleEditProfile}>
+                  <FaUserEdit /> Modifier
+                </button>
+              </div>
+            )}
+            <button className="close-btn" onClick={toggleProfile}>Fermer</button>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 

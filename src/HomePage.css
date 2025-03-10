@@ -1,101 +1,192 @@
-/* Style général */
+/* General Styles */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f4f9;
-    color: #333;
+    color: #003366;
 }
 
-/* En-tête */
-.header {
+.homepage {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header Styles */
+.homepage-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1rem 2rem;
     background-color: #003366;
-    padding: 10px 40px;
-    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.header .logo {
+.homepage-header__logo {
+    display: flex;
+    align-items: center;
     font-size: 1.5rem;
     font-weight: bold;
+    color: white;
 }
 
-.header nav ul {
+.homepage-header__logo-icon {
+    margin-right: 0.5rem;
+    color: white;
+}
+
+.homepage-header__nav ul {
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
     display: flex;
-    gap: 15px;
 }
 
-.header nav ul li button {
-    background-color: #ffffff;
+.homepage-header__nav li {
+    margin-left: 1rem;
     color: #003366;
+}
+
+.homepage-header__btn {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: #003366;
+    /* Couleur bleue pour le bouton */
+    color: white;
     border: none;
-    padding: 8px 15px;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.header nav ul li button:hover {
-    background-color: #003366;
-    color: white;
+.homepage-header__btn:hover {
+    background-color: #49687c;
+    /* Couleur bleue plus foncée au survol */
 }
 
-/* Page d'accueil */
-.home-page {
-    text-align: center;
-    padding: 20px;
+.homepage-header__login-btn svg {
+    margin-right: 0.5rem;
 }
 
-.home-page h1 {
+/* Main Content Styles */
+.homepage-main {
+    flex: 1;
+    padding: 2rem;
+    background-color: #ffffff;
+    margin: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.homepage-main__content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+}
+
+.homepage-main__text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.homepage-main__title {
     font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 10px;
+    color: #2c3e50;
+    margin-bottom: 1rem;
 }
 
-.home-page p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
+.homepage-main__title .app-name {
+    color: #3498db;
 }
 
-.image-container {
-    margin: 20px auto;
+.homepage-main__description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 1.5rem;
 }
 
-.home-page-image {
-    max-width: 80%;
+.homepage-main__image-container {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+}
+
+.homepage-main__image {
+    max-width: 100%;
     height: auto;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Pied de page */
-.footer {
-    background-color: #003366;
+/* Footer Styles */
+.homepage-footer {
+    background-color: #A0C0E0;
     color: white;
-    padding: 20px;
+    padding: 2rem;
     text-align: center;
 }
 
-.footer-content {
-    max-width: 800px;
+.homepage-footer__content {
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-.footer-logo-image {
-    width: 50px;
-    margin: 10px 0;
+.homepage-footer__logo-image {
+    max-width: 100px;
+    margin: 1rem 0;
 }
 
-.footer-links a,
-.footer-link a {
+.homepage-footer__links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.homepage-footer__links a {
     color: white;
     text-decoration: none;
-    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
 }
 
-.footer-links a:hover,
-.footer-link a:hover {
-    text-decoration: underline;
+.homepage-footer__links a:hover {
+    color: #3498db;
+}
+
+.homepage-footer__links svg {
+    margin-right: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .homepage-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .homepage-header__nav ul {
+        flex-direction: column;
+    }
+
+    .homepage-header__nav li {
+        margin: 0.5rem 0;
+    }
+
+    .homepage-main__content {
+        flex-direction: column;
+    }
+
+    .homepage-main__text {
+        text-align: center;
+    }
+
+    .homepage-footer__links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 }
